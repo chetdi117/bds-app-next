@@ -3,6 +3,7 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
+  --white: #fff;
   --primary: #00b98e;
   --secondary: #ff6922;
   --light: #effdf5;
@@ -41,4 +42,19 @@ body {
 }
 .header-title {
   @apply text-3xl font-semibold leading-[1.15] text-dark sm:text-2xl;
+}
+.ml-auto {
+  margin-left: auto !important;
+}
+//Client menu
+.menu-client {
+  @apply flex items-center p-2  sm:flex-wrap;
+  background-color: var(--bs-white);
+}
+.flex-grow-1 {
+  flex-grow: 1 !important;
+}
+
+.border-0 {
+  border: 0 !important;
 }
