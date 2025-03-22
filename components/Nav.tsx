@@ -1,7 +1,7 @@
 'use client';
 import React, { ReactNode, useEffect, useState } from 'react';
 import type { MenuProps } from 'antd';
-import { Menu, Dropdown } from 'antd';
+import { Menu, Dropdown, Button } from 'antd';
 import Image from 'next/image';
 import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralUnion } from 'next-auth/react';
 import { FontAwesomeIcon } from '@node_modules/@fortawesome/react-fontawesome';
@@ -59,28 +59,14 @@ const items: MenuItem[] = [
     key: 'SubMenu',
     children: [
       {
-        type: 'group',
-        label: 'Item 1',
-        key: 'group1',
-        children: [
-          { label: <Link href="/setting/1">Option 1</Link>, key: 'setting:1', visible: 'true' },
-          { label: <Link href="/setting/2">Option 2</Link>, key: 'setting:2', visible: 'true' },
-        ],
+        label: <Link href="/setting/1"> azxczxczxcasdasd test wrap nef dai lam azxczxc</Link>,
+        key: 'setting:1',
         visible: 'true',
       },
-      {
-        type: 'group',
-        label: 'Item 2',
-        key: 'group2',
-        children: [
-          { label: <Link href="/setting/3">Option 3</Link>, key: 'setting:3', visible: 'true' },
-          { label: <Link href="/setting/4">Option 4</Link>, key: 'setting:4', visible: 'true' },
-        ],
-        visible: 'true',
-      },
+      { label: <Link href="/setting/2">Option 2</Link>, key: 'setting:2', visible: 'true' },
     ],
     visible: 'true',
-    className: 'border-0',
+    className: 'border-0 client-submenu',
   },
   {
     key: 'alipay',
@@ -191,7 +177,7 @@ const NavbarComponent = () => {
     return <></>;
   }
   return (
-    <div className="menu-client">
+    <header className="menu-client">
       <Menu
         selectedKeys={[current]}
         mode="horizontal"
@@ -199,7 +185,9 @@ const NavbarComponent = () => {
         className="main-menu flex-grow-1 border-0"
       />
       {providers ? (
-        <Dropdown overlay={<Menu items={userDropdownMenu} />}>
+        <Dropdown
+          className="client-user-menu"
+          overlay={<Menu items={userDropdownMenu} />}>
           <a
             onClick={(e) => e.preventDefault()}
             className="ant-dropdown-link"
@@ -208,13 +196,15 @@ const NavbarComponent = () => {
           </a>
         </Dropdown>
       ) : (
-        <Link
-          href="/api/auth/signin"
-          className="ant-dropdown-link">
-          Login
-        </Link>
+        <Button
+          onClick={() => signIn()}
+          color="default"
+          className="client-menu-login hover:bg-grey-lighter"
+          variant="link">
+          Đăng Nhập
+        </Button>
       )}
-    </div>
+    </header>
   );
 };
 
