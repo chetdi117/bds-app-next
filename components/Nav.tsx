@@ -199,7 +199,7 @@ const NavbarComponent = () => {
         <Button
           onClick={() => signIn()}
           color="default"
-          className="client-menu-login hover:bg-grey-lighter"
+          className="client-menu-login"
           variant="link">
           Đăng Nhập
         </Button>

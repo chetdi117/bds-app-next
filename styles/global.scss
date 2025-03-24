@@ -1,8 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
+  --white: #fff;
   --pg-grid-space-unit: 4px;
   --pg-grid-space-unit-2x: 8px;
   --pg-grid-space-unit-3x: 12px;
@@ -401,6 +401,10 @@ header.menu-client {
   box-sizing: border-box;
   padding: 17px 15px;
   box-shadow: 0 4px 10px hsla(0, 0%, 71%, 0.18);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--pg-white);
   ul.ant-menu {
     &.ant-menu-root {
       > li.logo-home-page {
@@ -452,6 +456,38 @@ header.menu-client {
         &:hover {
           @apply text-dark;
           background-color: var(--pg-grey-lighter);
+        }
+      }
+    }
+  }
+}
+
+.ant-carousel {
+  &:where(.css-dev-only-do-not-override-240cud) {
+    > .client-sliders {
+      > .slick-list {
+        > .slick-track {
+          > .slick-slide {
+            > div > .slider-item {
+              > a {
+                > .slider-item-info {
+                  width: 1140px;
+                  left: calc(50% - 570px);
+                  bottom: 32px;
+                  h3.slider-item-title {
+                    @apply font-normal mb-2;
+                    letter-spacing: -0.2px;
+                    font-size: 2rem;
+                    line-height: 44px;
+                  }
+                  .slider-item-description {
+                    @apply text-base font-normal;
+                    line-height: 26px;
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

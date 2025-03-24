@@ -39,11 +39,7 @@ export default function RootLayout({
       </head>
       <body>
         <NavbarComponent />
-        <AntdRegistry>
-          <Row className="justify-center py-2">
-            <Col span={20}>{children}</Col>
-          </Row>
-        </AntdRegistry>
+        <AntdRegistry>{children}</AntdRegistry>
       </body>
     </html>
   );

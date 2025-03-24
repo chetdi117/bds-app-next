@@ -25,7 +25,7 @@ export default {
         green: 'var(--bs-green)',
         teal: 'var(--bs-teal)',
         cyan: 'var(--bs-cyan)',
-        white: 'var(--bs-white)',
+        white: 'var(--white)',
 
         gray: 'var(--bs-gray)',
         grayDark: 'var(--bs-gray-dark)',
