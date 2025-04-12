@@ -493,3 +493,64 @@ header.menu-client {
     }
   }
 }
+//Filters
+.project-filters-bar {
+  margin: 30px 0;
+  > .ant-col {
+    > .project-filters-bar-inside {
+      background: #ffffff;
+      position: relative;
+      height: 56px;
+      box-shadow: 0px 2px 4px rgba(132, 140, 148, 0.05);
+      border-radius: 6px;
+      // width: 1140px;
+      padding: 0;
+      margin: 0 auto;
+      border: 1px solid #ebedf0;
+      > .vertical-line {
+        background: #f2f2f2;
+        width: 1px;
+        height: 32px;
+        float: left;
+        margin: 12px 0px;
+      }
+      > .project-search-bar-suggestion {
+        width: 305px;
+        > .project-filters-search {
+          background: #f2f2f2;
+          border-color: #f2f2f2;
+          font-size: 14px;
+          line-height: 20px;
+          font-weight: normal;
+          padding: 5px 15px;
+
+          &:focus-within {
+            box-shadow: none;
+          }
+        }
+      }
+      .select-control {
+        width: 183px;
+        padding: 0.5rem 1rem 0.5rem;
+        > .ant-select {
+          > .ant-select-selector {
+            @apply p-0 text-dark whitespace-nowrap;
+            // height: 20px;
+            // .ant-select-selection-wrap {
+            //   .ant-select-selector {
+            //     height: 20px;
+            //   }
+            //   .ant-select-selection-search {
+            //     height: 20px;
+            //     .ant-select-selection-search-input {
+            //       line-height: 20px;
+            //       height: 20px;
+            //     }
+            //   }
+            // }
+          }
+        }
+      }
+    }
+  }
+}
