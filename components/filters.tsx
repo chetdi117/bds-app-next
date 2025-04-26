@@ -4,9 +4,11 @@ import { faMagnifyingGlass } from '@node_modules/@fortawesome/free-solid-svg-ico
 import { FontAwesomeIcon } from '@node_modules/@fortawesome/react-fontawesome';
 import { useState, useEffect } from 'react';
 import { Col, Row } from '@node_modules/antd/es';
-import { Input, Select, Skeleton } from 'antd';
+import { Input, Select, Skeleton, AutoComplete } from 'antd';
 import { useProvinces } from '../services/regionService';
 import { Provinces } from '@models';
+import type { AutoCompleteProps } from 'antd';
+
 interface Filters {
   search: string;
   provinceId: string;
@@ -19,12 +21,50 @@ const dafaultFilters: Filters = {
   districtId: '',
   wardId: '',
 };
+const getRandomInt = (max: number, min = 0) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+const searchResult = (query: string) =>
+  Array.from({ length: getRandomInt(5) })
+    .join('.')
+    .split('.')
+    .map((_, idx) => {
+      const category = `${query}${idx}`;
+      return {
+        value: category,
+        label: (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+            }}>
+            <span>
+              Found {query} on{' '}
+              <a
+                href={`https://s.taobao.com/search?q=${query}`}
+                target="_blank"
+                rel="noopener noreferrer">
+                {category}
+              </a>
+            </span>
+            <span>{getRandomInt(200, 100)} results</span>
+          </div>
+        ),
+      };
+    });
 const FiltersComponent = () => {
   const [filters, setFilters] = useState<Filters>(dafaultFilters);
   const [provinces, setProvinces] = useState([] as Provinces[]);
+  const [searchs, setSearchs] = useState<AutoCompleteProps['options']>([]);
+
   const { data: res, isLoading } = useProvinces('');
   const onChangeFiltersChange = (updateFilters: Partial<Filters>) => {
     setFilters({ ...filters, ...updateFilters });
+  };
+  const onSelectSearching = (value: string) => {
+    console.log('onSelect', value);
+  };
+  const handleSearch = (value: string) => {
+    setSearchs(value ? searchResult(value) : []);
   };
   useEffect(() => {
     if (res && res.data?.length > 0) {
@@ -51,20 +91,29 @@ const FiltersComponent = () => {
       <Col span={20}>
         <div className="project-filters-bar-inside w-full flex flex-row items-center">
           <div className="project-search-bar-suggestion p-3">
-            <Input
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                onChangeFiltersChange({ search: e.target.value });
-              }}
-              className="project-filters-search border-0 py-0 focus:border-0"
-              placeholder="search"
-              prefix={
-                <FontAwesomeIcon
-                  className="filter-search-icon"
-                  icon={faMagnifyingGlass}
-                  style={{ fontSize: '1rem' }}
-                />
-              }
-            />
+            <AutoComplete
+              className="auto-complete-search p-0"
+              popupMatchSelectWidth={252}
+              style={{ width: 300 }}
+              options={searchs}
+              onSelect={onSelectSearching}
+              onSearch={handleSearch}
+              size="large">
+              <Input
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  onChangeFiltersChange({ search: e.target.value });
+                }}
+                className="project-filters-search border-0 py-0 focus:border-0s"
+                placeholder="search"
+                prefix={
+                  <FontAwesomeIcon
+                    className="filter-search-icon"
+                    icon={faMagnifyingGlass}
+                    style={{ fontSize: '1rem' }}
+                  />
+                }
+              />
+            </AutoComplete>
           </div>
           <div className="vertical-line">&nbsp;</div>
           <div className="select-control flex flex-col ml-auto">

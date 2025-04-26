@@ -514,43 +514,49 @@ header.menu-client {
         float: left;
         margin: 12px 0px;
       }
-      > .project-search-bar-suggestion {
-        width: 305px;
-        > .project-filters-search {
-          background: #f2f2f2;
-          border-color: #f2f2f2;
-          font-size: 14px;
-          line-height: 20px;
-          font-weight: normal;
-          padding: 5px 15px;
+      .ant-select-auto-complete.auto-complete-search {
+        padding: 0;
+        height: auto;
+        .ant-select-selection-wrap {
+          height: 30px;
+          box-sizing: border-box;
+        }
+        > .project-search-bar-suggestion {
+          width: 305px;
+          > .project-filters-search {
+            background: #f2f2f2;
+            border-color: #f2f2f2;
+            font-size: 14px;
+            line-height: 20px;
+            font-weight: normal;
+            padding: 5px 15px;
 
-          &:focus-within {
-            box-shadow: none;
+            &:focus-within {
+              box-shadow: none;
+            }
           }
         }
       }
+
       .select-control {
         width: 183px;
         padding: 0.5rem 1rem 0.5rem;
         > .ant-select {
           > .ant-select-selector {
             @apply p-0 text-dark whitespace-nowrap;
-            // height: 20px;
-            // .ant-select-selection-wrap {
-            //   .ant-select-selector {
-            //     height: 20px;
-            //   }
-            //   .ant-select-selection-search {
-            //     height: 20px;
-            //     .ant-select-selection-search-input {
-            //       line-height: 20px;
-            //       height: 20px;
-            //     }
-            //   }
-            // }
           }
         }
       }
+    }
+  }
+}
+
+.ant-card.home-page-card {
+  .ant-card-body {
+    @apply p-0;
+    .product-image {
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
     }
   }
 }
